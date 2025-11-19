@@ -3,11 +3,11 @@ import { motion } from 'framer-motion'
 
 export default function Unified() {
   const toolchain = [
-    { icon: <GitBranch className="h-4 w-4" />, label: 'GIS & interconnection' },
-    { icon: <Database className="h-4 w-4" />, label: 'Resource & grid data' },
-    { icon: <Calculator className="h-4 w-4" />, label: 'Engineering models' },
-    { icon: <Coins className="h-4 w-4" />, label: 'Financial models' },
-    { icon: <BarChart3 className="h-4 w-4" />, label: 'Market & economics' },
+    { icon: <GitBranch className="h-4 w-4" />, label: 'GIS' },
+    { icon: <Database className="h-4 w-4" />, label: 'Grid data' },
+    { icon: <Calculator className="h-4 w-4" />, label: 'Engineering' },
+    { icon: <Coins className="h-4 w-4" />, label: 'Finance' },
+    { icon: <BarChart3 className="h-4 w-4" />, label: 'Markets' },
   ]
 
   const kpis = [
@@ -33,11 +33,10 @@ export default function Unified() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white">One platform replaces the stack</h2>
-          <p className="mt-3 text-slate-300 max-w-3xl mx-auto">Gridbrid unifies technical, financial, and economic modeling across renewables, non‑renewables, and storage of any size—so teams plan collaboratively and co‑optimize outcomes.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white">Replace the stack</h2>
+          <p className="mt-2 text-slate-300 max-w-2xl mx-auto">Visual, unified planning for hybrid plants.</p>
         </div>
 
-        {/* Replace the toolchain */}
         <div className="grid lg:grid-cols-12 gap-8 items-stretch">
           <div className="lg:col-span-6 space-y-6 relative">
             {/* Traditional */}
@@ -55,7 +54,7 @@ export default function Unified() {
                   </div>
                 ))}
               </div>
-              <div className="mt-4 text-xs text-slate-400">Siloed files, manual handoffs, lost context.</div>
+              <div className="mt-4 text-xs text-slate-400">Silos & handoffs.</div>
 
               {/* Animated flow line out */}
               <svg className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block" width="160" height="120" viewBox="0 0 160 120" fill="none">
@@ -89,12 +88,12 @@ export default function Unified() {
               </div>
               <div className="mt-4 grid grid-cols-2 gap-3">
                 {[
-                  { icon: <Database className="h-4 w-4" />, label: 'Data ingestion' },
-                  { icon: <Layers className="h-4 w-4" />, label: 'Hybrid modeling' },
-                  { icon: <Server className="h-4 w-4" />, label: 'Grid constraints' },
-                  { icon: <Calculator className="h-4 w-4" />, label: 'Financials' },
-                  { icon: <BarChart3 className="h-4 w-4" />, label: 'Market & economics' },
-                  { icon: <Workflow className="h-4 w-4" />, label: 'Scenario orchestration' },
+                  { icon: <Database className="h-4 w-4" />, label: 'Ingest' },
+                  { icon: <Layers className="h-4 w-4" />, label: 'Model' },
+                  { icon: <Server className="h-4 w-4" />, label: 'Grid' },
+                  { icon: <Calculator className="h-4 w-4" />, label: 'Finance' },
+                  { icon: <BarChart3 className="h-4 w-4" />, label: 'Market' },
+                  { icon: <Workflow className="h-4 w-4" />, label: 'Scenarios' },
                 ].map((s) => (
                   <motion.div
                     key={s.label}
@@ -106,7 +105,7 @@ export default function Unified() {
                   </motion.div>
                 ))}
               </div>
-              <div className="mt-4 text-xs text-slate-400">One model of record. Versioned assumptions. Shared context.</div>
+              <div className="mt-4 text-xs text-slate-400">One system. Shared context.</div>
 
               {/* Animated flow line in */}
               <svg className="pointer-events-none absolute right-0 -top-12 hidden lg:block" width="160" height="140" viewBox="0 0 160 140" fill="none">
@@ -136,7 +135,7 @@ export default function Unified() {
           {/* Triad + KPI optimizer */}
           <div className="lg:col-span-6">
             <div className="h-full rounded-2xl border border-slate-700/60 bg-slate-900/50 p-6">
-              <p className="text-sm font-semibold text-slate-200">Unified technical • financial • economic modeling</p>
+              <p className="text-sm font-semibold text-slate-200">Technical • Financial • Economic</p>
 
               {/* Asset class animated badges */}
               <div className="mt-4 flex flex-wrap gap-2">
@@ -165,9 +164,9 @@ export default function Unified() {
               {/* Triad */}
               <div className="mt-5 grid grid-cols-3 gap-3">
                 {[
-                  { icon: <Settings className="h-4 w-4" />, label: 'Technical', sub: 'Sizing, dispatch, losses' },
-                  { icon: <Coins className="h-4 w-4" />, label: 'Financial', sub: 'CAPEX/OPEX, debt/equity' },
-                  { icon: <BarChart3 className="h-4 w-4" />, label: 'Economic', sub: 'Market prices, congestion' },
+                  { icon: <Settings className="h-4 w-4" />, label: 'Technical' },
+                  { icon: <Coins className="h-4 w-4" />, label: 'Financial' },
+                  { icon: <BarChart3 className="h-4 w-4" />, label: 'Economic' },
                 ].map((b, i) => (
                   <motion.div
                     key={b.label}
@@ -178,16 +177,13 @@ export default function Unified() {
                     viewport={{ once: true }}
                   >
                     <div className="flex items-center gap-2 text-slate-200">{b.icon}<span className="font-semibold">{b.label}</span></div>
-                    <p className="mt-2 text-slate-400">{b.sub}</p>
-                    <div className="pointer-events-none absolute -inset-px rounded-xl ring-1 ring-inset ring-blue-500/10" />
                   </motion.div>
                 ))}
               </div>
 
               {/* KPI optimizer visual */}
               <div className="mt-6">
-                <p className="text-sm text-slate-300">Co‑optimize KPIs for financial, resilience, and sustainability outcomes</p>
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-2">
                   {kpis.map((k, i) => (
                     <motion.span
                       key={k.label}
@@ -202,7 +198,7 @@ export default function Unified() {
                   ))}
                 </div>
 
-                {/* Radar-like bars */}
+                {/* Bars */}
                 <div className="mt-5 grid grid-cols-5 gap-3">
                   {kpis.map((k, idx) => (
                     <div key={k.label} className="flex flex-col items-center gap-2">
@@ -220,7 +216,7 @@ export default function Unified() {
 
                 {/* Outcome badges */}
                 <div className="mt-6 grid grid-cols-3 gap-3 text-xs">
-                  <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-emerald-300 inline-flex items-center gap-2"><Gauge className="h-3 w-3" /> Financial performance</motion.div>
+                  <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-emerald-300 inline-flex items-center gap-2"><Gauge className="h-3 w-3" /> Financial</motion.div>
                   <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-2 text-cyan-300 inline-flex items-center gap-2"><Shield className="h-3 w-3" /> Resilience</motion.div>
                   <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-amber-300 inline-flex items-center gap-2"><Leaf className="h-3 w-3" /> Sustainability</motion.div>
                 </div>

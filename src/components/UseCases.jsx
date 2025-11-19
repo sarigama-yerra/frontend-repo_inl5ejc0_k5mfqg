@@ -1,4 +1,5 @@
 import { Building2, Factory, DollarSign, Boxes, ClipboardList } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function UseCases() {
   const stakeholderIcon = {
@@ -39,26 +40,6 @@ export default function UseCases() {
             Consultants: ['Study pack w/ assumptions', 'Version control & audit trail', 'Validation against standards'],
           },
         },
-        {
-          name: 'Due diligence',
-          items: {
-            'C&I Consumers': ['Assumption book & backups', 'O&M obligations & SLAs', 'Business case sign‑off'],
-            Utilities: ['Compliance & interop checks', 'Anti‑islanding & safety cases', 'Metering & settlement'],
-            Investors: ['Downside cases & mitigants', 'Covenants & DSCR testing', 'Third‑party review notes'],
-            Suppliers: ['Quality plan & FAT/SAT', 'Spare strategy & warranties', 'Change order governance'],
-            Consultants: ['Independent review memo', 'Benchmarking & peer comps', 'Risk register & owner’s rep'],
-          },
-        },
-        {
-          name: 'Business development',
-          items: {
-            'C&I Consumers': ['Executive-ready deck', 'Value proposition by site', 'Roll‑out roadmap'],
-            Utilities: ['Programs & tariffs alignment', 'Grid services participation', 'Community/stakeholder comms'],
-            Investors: ['Investment memo & IC pack', 'Co‑investment structures', 'Portfolio fit & hedging'],
-            Suppliers: ['Commercial offer & T&Cs', 'Delivery timelines', 'Post‑COD support model'],
-            Consultants: ['Implementation PMO plan', 'Measurement & verification', 'Governance cadence'],
-          },
-        },
       ],
     },
     {
@@ -73,33 +54,6 @@ export default function UseCases() {
             Investors: ['Market stack preview', 'Capex/opex envelopes', 'Permitting timeline risk'],
             Suppliers: ['High‑level EPC concept', 'Equipment availability', 'Grid code constraints'],
             Consultants: ['Data room checklist', 'Study scope definition', 'QA/QC approach'],
-          },
-        },
-        {
-          name: 'Feasibility',
-          items: {
-            Utilities: ['Network studies (load flow, EMT)', 'Upgrade pathways & costs', 'Grid service participation'],
-            Investors: ['Revenue stacking scenarios', 'IRR/NPV with sensitivities', 'PPA vs. merchant mix'],
-            Suppliers: ['Detailed design inputs', 'Performance guarantees', 'Construction sequencing'],
-            Consultants: ['Assumption book & traceability', 'Independent validation', 'Standards compliance'],
-          },
-        },
-        {
-          name: 'Due diligence',
-          items: {
-            Utilities: ['Compliance to grid code', 'Operational readiness', 'Settlement & metering'],
-            Investors: ['Contract risk review', 'Downside/black swan cases', 'ESG & permitting posture'],
-            Suppliers: ['FAT/SAT plans & spares', 'Warranty & liquidated damages', 'Interface risk register'],
-            Consultants: ['Owner’s engineer memo', 'Benchmarking & peer review', 'Risk & mitigation plan'],
-          },
-        },
-        {
-          name: 'Business development',
-          items: {
-            Utilities: ['Program enablement', 'Stakeholder communications', 'Portfolio alignment'],
-            Investors: ['IC materials & data room', 'Hedging & risk policy', 'Growth pipeline view'],
-            Suppliers: ['Commercial proposal', 'Delivery & commissioning plan', 'Lifecycle service model'],
-            Consultants: ['PMO & governance', 'M&V methodology', 'Reporting templates'],
           },
         },
       ],
@@ -120,21 +74,21 @@ export default function UseCases() {
   return (
     <section id="use-cases" className="py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mb-10">
+        <div className="mb-10 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/5 px-3 py-1 text-xs text-emerald-300">
             <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400"></span>
-            Use cases by stage & stakeholder
+            Where Gridbrid shines
           </div>
-          <h2 className="mt-3 text-3xl font-bold text-white">From pre‑feasibility to business development</h2>
-          <p className="mt-3 max-w-2xl text-slate-300">Designed for microgrids and utility‑scale projects. Align utilities, investors, suppliers, consultants, and C&I owners with transparent, versioned studies.</p>
+          <h2 className="mt-3 text-3xl font-bold text-white">Two quick snapshots</h2>
+          <p className="mt-2 max-w-xl mx-auto text-slate-300">Visual cards over long lists. Tap into the details later.</p>
         </div>
 
         {groups.map((group) => (
-          <div key={group.context} className="mb-14">
-            <div className="mb-6 flex items-center justify-between">
+          <div key={group.context} className="mb-10">
+            <div className="mb-5 flex items-center justify-between">
               <h3 className="text-xl font-semibold text-white">{group.context}</h3>
               <div className={`hidden sm:flex items-center gap-2 text-xs text-slate-400`}>
-                {group.stakeholders.map((s) => {
+                {group.stakeholders.slice(0,3).map((s) => {
                   const Icon = stakeholderIcon[s]
                   return (
                     <span key={s} className="inline-flex items-center gap-2 rounded-lg border border-slate-700/60 bg-slate-900/50 px-3 py-1.5">
@@ -143,24 +97,32 @@ export default function UseCases() {
                     </span>
                   )
                 })}
+                <span className="text-slate-500">+ more</span>
               </div>
             </div>
 
-            <div className="grid gap-6">
-              {group.stages.map((stage) => (
-                <div key={stage.name} className="rounded-2xl border border-slate-700/60 bg-slate-900/50 p-5">
+            <div className="grid sm:grid-cols-2 gap-6">
+              {group.stages.map((stage, idx) => (
+                <motion.div
+                  key={stage.name}
+                  className="relative overflow-hidden rounded-2xl border border-slate-700/60 bg-slate-900/50 p-5"
+                  initial={{ y: 18, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: idx * 0.05 }}
+                  viewport={{ once: true }}
+                >
                   <div className="mb-4 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className={`h-2 w-2 rounded-full ${badgeColorClass(group.badgeColor)}`} />
                       <h4 className="text-white font-semibold">{stage.name}</h4>
                     </div>
-                    <p className="text-xs text-slate-400">Stakeholder‑specific objectives & outputs</p>
+                    <p className="text-xs text-slate-400">Snapshot</p>
                   </div>
 
-                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    {group.stakeholders.map((s) => {
+                  <div className="grid grid-cols-2 gap-4">
+                    {group.stakeholders.slice(0,2).map((s) => {
                       const Icon = stakeholderIcon[s]
-                      const bullets = stage.items[s] || []
+                      const bullets = (stage.items[s] || []).slice(0,3)
                       return (
                         <div key={s} className="group rounded-xl border border-slate-700/60 bg-slate-950/60 p-4 transition-colors hover:border-emerald-400/40">
                           <div className="flex items-center gap-2">
@@ -181,7 +143,7 @@ export default function UseCases() {
                       )
                     })}
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
