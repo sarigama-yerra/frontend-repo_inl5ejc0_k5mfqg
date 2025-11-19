@@ -1,71 +1,56 @@
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import Features from './components/Features'
+import UseCases from './components/UseCases'
+
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Subtle pattern overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.05),transparent_50%)]"></div>
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      {/* backdrop grid glow */}
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(60%_40%_at_50%_-10%,rgba(16,185,129,0.15),transparent),radial-gradient(40%_30%_at_100%_10%,rgba(37,99,235,0.15),transparent)]" />
 
-      <div className="relative min-h-screen flex items-center justify-center p-8">
-        <div className="max-w-2xl w-full">
-          {/* Header with Flames icon */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center justify-center mb-6">
-              <img
-                src="/flame-icon.svg"
-                alt="Flames"
-                className="w-24 h-24 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]"
-              />
-            </div>
+      <Navbar />
+      <main>
+        <Hero />
+        <Features />
+        <UseCases />
 
-            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Flames Blue
-            </h1>
-
-            <p className="text-xl text-blue-200 mb-6">
-              Build applications through conversation
-            </p>
-          </div>
-
-          {/* Instructions */}
-          <div className="bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 rounded-2xl p-8 shadow-xl mb-6">
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                1
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Describe your idea</h3>
-                <p className="text-blue-200/80 text-sm">Use the chat panel on the left to tell the AI what you want to build</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                2
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Watch it build</h3>
-                <p className="text-blue-200/80 text-sm">Your app will appear in this preview as the AI generates the code</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-8 h-8 bg-blue-500 text-white rounded-lg flex items-center justify-center font-bold">
-                3
-              </div>
-              <div>
-                <h3 className="font-semibold text-white mb-1">Refine and iterate</h3>
-                <p className="text-blue-200/80 text-sm">Continue the conversation to add features and make changes</p>
+        {/* CTA */}
+        <section id="why" className="py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative overflow-hidden rounded-3xl border border-slate-700/60 bg-gradient-to-br from-slate-900 to-slate-950 p-10">
+              <div className="absolute -inset-px rounded-3xl ring-1 ring-inset ring-blue-500/10" />
+              <div className="grid lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">Streamline and accelerate the energy transition</h3>
+                  <p className="mt-3 text-slate-300">Give your teams a single system for hybrid planning and grid-aware economics. Faster cycles, fewer surprises, stronger decisions.</p>
+                </div>
+                <div className="lg:col-span-5">
+                  <form className="grid sm:grid-cols-3 gap-3">
+                    <input type="email" placeholder="Work email" className="sm:col-span-2 rounded-lg bg-slate-900/70 border border-slate-700/60 px-4 py-3 text-sm outline-none focus:border-blue-500/60" />
+                    <button className="rounded-lg bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-500 transition">Request a demo</button>
+                  </form>
+                  <p className="mt-2 text-xs text-slate-400">By requesting a demo, you agree to our terms and privacy policy.</p>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          {/* Footer */}
-          <div className="text-center">
-            <p className="text-sm text-blue-300/60">
-              No coding required • Just describe what you want
-            </p>
+        {/* Footer */}
+        <footer className="pb-12">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-800 pt-8 text-sm text-slate-400">
+              <p>© {new Date().getFullYear()} Gridbrid. All rights reserved.</p>
+              <div className="flex items-center gap-6">
+                <a href="#" className="hover:text-slate-200">Security</a>
+                <a href="#" className="hover:text-slate-200">Privacy</a>
+                <a href="#" className="hover:text-slate-200">Contact</a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        </footer>
+      </main>
     </div>
   )
 }
