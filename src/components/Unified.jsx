@@ -1,4 +1,5 @@
-import { GitBranch, Calculator, Coins, Server, Settings, Workflow, Database, Layers, Gauge, Leaf, Shield, BarChart3 } from 'lucide-react'
+import { GitBranch, Calculator, Coins, Server, Settings, Workflow, Database, Layers, Gauge, Leaf, Shield, BarChart3, Sun, Wind, Battery, Flame } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export default function Unified() {
   const toolchain = [
@@ -17,6 +18,15 @@ export default function Unified() {
     { label: 'LCOE', color: 'from-violet-400/80 to-violet-500/40' },
   ]
 
+  const assets = [
+    { label: 'Solar', Icon: Sun, color: 'text-amber-300 border-amber-400/30 bg-amber-400/10' },
+    { label: 'Wind', Icon: Wind, color: 'text-cyan-300 border-cyan-400/30 bg-cyan-400/10' },
+    { label: 'Storage', Icon: Battery, color: 'text-emerald-300 border-emerald-400/30 bg-emerald-400/10' },
+    { label: 'Thermal', Icon: Flame, color: 'text-orange-300 border-orange-400/30 bg-orange-400/10' },
+  ]
+
+  const sizes = ['kW', 'MW', 'GW']
+
   return (
     <section id="unified" className="relative py-20">
       <div className="absolute inset-0 bg-[radial-gradient(60%_40%_at_20%_0%,rgba(16,185,129,0.12),transparent),radial-gradient(50%_40%_at_100%_20%,rgba(37,99,235,0.12),transparent)]" />
@@ -29,8 +39,9 @@ export default function Unified() {
 
         {/* Replace the toolchain */}
         <div className="grid lg:grid-cols-12 gap-8 items-stretch">
-          <div className="lg:col-span-6 space-y-4">
-            <div className="rounded-2xl border border-slate-700/60 bg-slate-900/50 p-5">
+          <div className="lg:col-span-6 space-y-6 relative">
+            {/* Traditional */}
+            <div className="rounded-2xl border border-slate-700/60 bg-slate-900/50 p-5 relative overflow-hidden">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-slate-200">Traditional toolchain</p>
                 <span className="text-xs rounded-full bg-rose-500/20 text-rose-300 px-2 py-0.5 border border-rose-400/30">Fragmented</span>
@@ -45,9 +56,33 @@ export default function Unified() {
                 ))}
               </div>
               <div className="mt-4 text-xs text-slate-400">Siloed files, manual handoffs, lost context.</div>
+
+              {/* Animated flow line out */}
+              <svg className="pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block" width="160" height="120" viewBox="0 0 160 120" fill="none">
+                <defs>
+                  <linearGradient id="flow" x1="0" x2="1">
+                    <stop offset="0%" stopColor="#34d399" stopOpacity="0.0" />
+                    <stop offset="50%" stopColor="#34d399" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#34d399" stopOpacity="0.0" />
+                  </linearGradient>
+                </defs>
+                <motion.path
+                  d="M 10 60 C 60 60, 100 10, 150 10"
+                  stroke="url(#flow)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, pathOffset: 0 }}
+                  animate={{ pathLength: 1, pathOffset: 1 }}
+                  transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity }}
+                />
+                <motion.circle r="3" fill="#34d399" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}>
+                  <animateMotion dur="2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" path="M 10 60 C 60 60, 100 10, 150 10" />
+                </motion.circle>
+              </svg>
             </div>
 
-            <div className="rounded-2xl border border-emerald-500/30 bg-slate-900/50 p-5">
+            {/* Unified */}
+            <div className="rounded-2xl border border-emerald-500/30 bg-slate-900/50 p-5 relative">
               <div className="flex items-center justify-between">
                 <p className="text-sm font-semibold text-slate-200">Gridbrid end‑to‑end</p>
                 <span className="text-xs rounded-full bg-emerald-500/20 text-emerald-300 px-2 py-0.5 border border-emerald-400/30">Unified</span>
@@ -61,12 +96,40 @@ export default function Unified() {
                   { icon: <BarChart3 className="h-4 w-4" />, label: 'Market & economics' },
                   { icon: <Workflow className="h-4 w-4" />, label: 'Scenario orchestration' },
                 ].map((s) => (
-                  <div key={s.label} className="rounded-lg border border-emerald-500/30 bg-gradient-to-br from-slate-900/70 to-slate-900/40 p-3 text-xs text-slate-200">
+                  <motion.div
+                    key={s.label}
+                    className="rounded-lg border border-emerald-500/30 bg-gradient-to-br from-slate-900/70 to-slate-900/40 p-3 text-xs text-slate-200"
+                    whileHover={{ scale: 1.03 }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                  >
                     <div className="flex items-center gap-2">{s.icon}<span>{s.label}</span></div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
               <div className="mt-4 text-xs text-slate-400">One model of record. Versioned assumptions. Shared context.</div>
+
+              {/* Animated flow line in */}
+              <svg className="pointer-events-none absolute right-0 -top-12 hidden lg:block" width="160" height="140" viewBox="0 0 160 140" fill="none">
+                <defs>
+                  <linearGradient id="flow2" x1="0" x2="1">
+                    <stop offset="0%" stopColor="#34d399" stopOpacity="0.0" />
+                    <stop offset="50%" stopColor="#34d399" stopOpacity="0.8" />
+                    <stop offset="100%" stopColor="#34d399" stopOpacity="0.0" />
+                  </linearGradient>
+                </defs>
+                <motion.path
+                  d="M 10 130 C 70 120, 110 60, 150 40"
+                  stroke="url(#flow2)"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, pathOffset: 0 }}
+                  animate={{ pathLength: 1, pathOffset: 1 }}
+                  transition={{ duration: 2, ease: 'easeInOut', repeat: Infinity, delay: 0.6 }}
+                />
+                <motion.circle r="3" fill="#34d399" initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.6 }}>
+                  <animateMotion dur="2s" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" path="M 10 130 C 70 120, 110 60, 150 40" />
+                </motion.circle>
+              </svg>
             </div>
           </div>
 
@@ -75,18 +138,49 @@ export default function Unified() {
             <div className="h-full rounded-2xl border border-slate-700/60 bg-slate-900/50 p-6">
               <p className="text-sm font-semibold text-slate-200">Unified technical • financial • economic modeling</p>
 
+              {/* Asset class animated badges */}
+              <div className="mt-4 flex flex-wrap gap-2">
+                {assets.map(({ label, Icon, color }, idx) => (
+                  <motion.span
+                    key={label}
+                    className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs ${color}`}
+                    initial={{ y: 6, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ delay: idx * 0.08, type: 'spring', stiffness: 300, damping: 20 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                  >
+                    <Icon className="h-3.5 w-3.5" /> {label}
+                  </motion.span>
+                ))}
+                {/* Size cycle */}
+                <motion.span
+                  className="inline-flex items-center gap-2 rounded-full border border-fuchsia-400/30 bg-fuchsia-400/10 px-3 py-1 text-xs text-fuchsia-300"
+                  animate={{ scale: [1, 1.06, 1] }}
+                  transition={{ duration: 2.4, repeat: Infinity }}
+                >
+                  Scale: <motion.b className="tabular-nums">{sizes[0]}</motion.b>
+                </motion.span>
+              </div>
+
               {/* Triad */}
               <div className="mt-5 grid grid-cols-3 gap-3">
                 {[
                   { icon: <Settings className="h-4 w-4" />, label: 'Technical', sub: 'Sizing, dispatch, losses' },
                   { icon: <Coins className="h-4 w-4" />, label: 'Financial', sub: 'CAPEX/OPEX, debt/equity' },
                   { icon: <BarChart3 className="h-4 w-4" />, label: 'Economic', sub: 'Market prices, congestion' },
-                ].map((b) => (
-                  <div key={b.label} className="relative rounded-xl border border-slate-700/60 bg-slate-900/60 p-4 text-xs">
+                ].map((b, i) => (
+                  <motion.div
+                    key={b.label}
+                    className="relative rounded-xl border border-slate-700/60 bg-slate-900/60 p-4 text-xs"
+                    initial={{ y: 12, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 * i }}
+                    viewport={{ once: true }}
+                  >
                     <div className="flex items-center gap-2 text-slate-200">{b.icon}<span className="font-semibold">{b.label}</span></div>
                     <p className="mt-2 text-slate-400">{b.sub}</p>
                     <div className="pointer-events-none absolute -inset-px rounded-xl ring-1 ring-inset ring-blue-500/10" />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
 
@@ -94,8 +188,17 @@ export default function Unified() {
               <div className="mt-6">
                 <p className="text-sm text-slate-300">Co‑optimize KPIs for financial, resilience, and sustainability outcomes</p>
                 <div className="mt-3 flex flex-wrap gap-2">
-                  {kpis.map((k) => (
-                    <span key={k.label} className={`text-xs rounded-full border border-slate-600/60 bg-slate-900/70 px-3 py-1 text-slate-200 hover:border-emerald-400/40 transition`}>{k.label}</span>
+                  {kpis.map((k, i) => (
+                    <motion.span
+                      key={k.label}
+                      className={`text-xs rounded-full border border-slate-600/60 bg-slate-900/70 px-3 py-1 text-slate-200`}
+                      initial={{ opacity: 0, y: 8 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.05 * i }}
+                      viewport={{ once: true }}
+                    >
+                      {k.label}
+                    </motion.span>
                   ))}
                 </div>
 
@@ -103,7 +206,13 @@ export default function Unified() {
                 <div className="mt-5 grid grid-cols-5 gap-3">
                   {kpis.map((k, idx) => (
                     <div key={k.label} className="flex flex-col items-center gap-2">
-                      <div className={`w-2 rounded-full bg-gradient-to-b ${k.color}`} style={{ height: 40 + (idx * 10) }} />
+                      <motion.div
+                        className={`w-2 rounded-full bg-gradient-to-b ${k.color}`}
+                        initial={{ height: 0 }}
+                        whileInView={{ height: 40 + idx * 10 }}
+                        transition={{ delay: 0.1 * idx, type: 'spring', stiffness: 120, damping: 18 }}
+                        viewport={{ once: true }}
+                      />
                       <span className="text-[10px] text-slate-400">{k.label}</span>
                     </div>
                   ))}
@@ -111,9 +220,9 @@ export default function Unified() {
 
                 {/* Outcome badges */}
                 <div className="mt-6 grid grid-cols-3 gap-3 text-xs">
-                  <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-emerald-300 inline-flex items-center gap-2"><Gauge className="h-3 w-3" /> Financial performance</div>
-                  <div className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-2 text-cyan-300 inline-flex items-center gap-2"><Shield className="h-3 w-3" /> Resilience</div>
-                  <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-amber-300 inline-flex items-center gap-2"><Leaf className="h-3 w-3" /> Sustainability</div>
+                  <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-emerald-300 inline-flex items-center gap-2"><Gauge className="h-3 w-3" /> Financial performance</motion.div>
+                  <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-2 text-cyan-300 inline-flex items-center gap-2"><Shield className="h-3 w-3" /> Resilience</motion.div>
+                  <motion.div whileHover={{ y: -2 }} className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-amber-300 inline-flex items-center gap-2"><Leaf className="h-3 w-3" /> Sustainability</motion.div>
                 </div>
               </div>
             </div>

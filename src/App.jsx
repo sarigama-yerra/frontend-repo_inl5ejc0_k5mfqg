@@ -3,6 +3,8 @@ import Hero from './components/Hero'
 import Features from './components/Features'
 import UseCases from './components/UseCases'
 import Unified from './components/Unified'
+import AsSeen from './components/AsSeen'
+import AnimatedBadges from './components/AnimatedBadges'
 
 function App() {
   return (
@@ -13,7 +15,9 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <AsSeen />
         <Unified />
+        <AnimatedBadges />
         <Features />
         <UseCases />
 
